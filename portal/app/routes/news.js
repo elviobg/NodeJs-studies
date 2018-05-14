@@ -1,22 +1,30 @@
-module.exports = function(app) {
-    
-    app.get('/news', function(req, res){
-        const connection = app.config.databaseConnection();
-        const newsModel = app.app.models.newsModel;
+module.exports = function (app) {
+  app.get('/news', function (req, res) {
+    const connection = app.config.databaseConnection()
+    const newsModel = app.app.models.newsModel
 
-        newsModel.getNews(connection, function(error, result){
-            console.log(result);
-            res.render("news/news", {news : result});
-        });
-    });
+    newsModel.getNews(connection, function (error, result) {
+      if (error === null) {
+        // console.log(result)
+        res.render('news/news', {news: result})
+      } else {
+        console.log(error)  
+      }
+    })
+  })
 
-    app.post('/news', function(req, res){         
-        const news = req.body;
-        const connection = app.config.databaseConnection();
-        const newsModel = app.app.models.newsModel;
+  app.post('/news', function (req, res) {
+    const news = req.body
+    const connection = app.config.databaseConnection()
+    const newsModel = app.app.models.newsModel
 
-        newsModel.saveNews(news, connection, function(error, result){            
-            res.redirect("news");
-        });
-    });
+    newsModel.saveNews(news, connection, function (error, result) {
+      if (error === null) {
+        // console.log(result)
+        res.render('news/news', {news: result})
+      } else {
+        console.log(error)  
+      }
+    })
+  })
 }

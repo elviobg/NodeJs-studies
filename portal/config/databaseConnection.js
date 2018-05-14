@@ -1,21 +1,21 @@
 const db = {
-    user: "root", 
-    password: "",
-    database: "news_portal",
-    host: "localhost"
-}; 
+  user: 'root',
+  password: '',
+  database: 'news_portal',
+  host: 'localhost'
+}
 
-const databaseConnection = function() {
-    const mysql = require('mysql');
+const databaseConnection = function () {
+  const mysql = require('mysql')
 
-    return mysql.createConnection({
-        host: db.host,
-        user: db.user,
-        password: db.password,
-        database: db.database
-    });    
-};
+  return mysql.createConnection({
+    host: db.host,
+    user: db.user,
+    password: db.password,
+    database: db.database
+  })
+}
 
-module.exports = function() {
-    return databaseConnection;
+module.exports = function () {
+  return databaseConnection
 }
