@@ -11,9 +11,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(validator())
 
 consign()
-  .include('./app/routes')
+  .include('./config/databaseConnection.js')
   .then('./app/models')
-  .then('./config/databaseConnection.js')
+  .then('./app/controllers')
+  .then('./app/routes')
   .into(app)
 
 module.exports = app
