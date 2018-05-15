@@ -7,6 +7,15 @@
 	<body>
 		<h1>Adicionar notícia</h1>
 		<br/>
+    <% if(validation) { %>
+      <ul>
+        <% for(var i=0; i<validation.length; i++) { %>
+          <li>
+            <%= validation[i] %>
+          </li>
+        <% } %>
+      </ul>
+    %> } %>
 		<form action="../news" method="post">
 			<label>Titulo</label>
 			<br/>
