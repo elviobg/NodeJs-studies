@@ -6,4 +6,18 @@ const server = app.listen(PORT, function () {
   console.log('Server running at port:', PORT)
 })
 
-require('socket.io').listen(server)
+const socketIO = require('socket.io').listen(server)
+app.set('websocket', socketIO)
+
+socketIO.on('connection', function(socket){
+  console.log("usuario conectado")
+
+  socket.on('disconnect', function(){
+    console.log("usuario desconectado")
+  })
+
+  socket.on('msgToServer', function(data){
+    websocket.emit('msgToClient', {nickname: data.nickname, msg: data.msg})
+  })
+})
+
