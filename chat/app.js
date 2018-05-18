@@ -8,6 +8,7 @@ const server = app.listen(PORT, function () {
 
 const socketIO = require('socket.io').listen(server)
 app.set('websocket', socketIO)
+app.set('users', [])
 
 socketIO.on('connection', function (socket) {
   console.log('usuario conectado')

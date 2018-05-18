@@ -1,5 +1,5 @@
 module.exports.startChat = function (app, req, res) {
-  const formData = req.body
+  const formData = req.body  
 
   req.assert('username', 'Username é obrigatorio').notEmpty()
   var errors = req.validationErrors()
@@ -12,7 +12,9 @@ module.exports.startChat = function (app, req, res) {
 
   const nickname = formData.username
   const websocket = app.get('websocket')
-  websocket.emit('msgToClient', {nickname: nickname, msg: 'Usuário conectado'})
+  var users = app.get('users')
+  users.push(nickname)
+  websocket.emit('msgToClient', {nickname: nickname, msg: 'Usuário conectado'})  
 
-  res.render('chat/chat', {nickname: nickname})
+  res.render('chat/chat', {nickname: nickname, users: users})
 }
