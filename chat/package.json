@@ -1,0 +1,27 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "socket.io": "^2.1.0"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "app/public/js/"
+    ]
+  }
+}
