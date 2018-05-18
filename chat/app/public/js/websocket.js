@@ -1,4 +1,5 @@
 const websocket = io('http://localhost:3000')
+const nickname = $('#nickname').val()
 
 websocket.on('msgToClient', function(data){  
   html = '<div class="dialogo">'
@@ -10,5 +11,5 @@ websocket.on('msgToClient', function(data){
 })
 
 $('#send').click(function(){
-  websocket.emit('msgToServer', {'nickname': 'NickName', 'msg':$('#msg').val()})
+  websocket.emit('msgToServer', {'nickname': nickname, 'msg':$('#msg').val()})
 })

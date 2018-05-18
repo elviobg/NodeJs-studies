@@ -9,15 +9,15 @@ const server = app.listen(PORT, function () {
 const socketIO = require('socket.io').listen(server)
 app.set('websocket', socketIO)
 
-socketIO.on('connection', function(socket){
-  console.log("usuario conectado")
+socketIO.on('connection', function (socket) {
+  console.log('usuario conectado')
 
-  socket.on('disconnect', function(){
-    console.log("usuario desconectado")
+  socket.on('disconnect', function () {
+    console.log('usuario desconectado')
   })
 
-  socket.on('msgToServer', function(data){
-    websocket.emit('msgToClient', {nickname: data.nickname, msg: data.msg})
+  socket.on('msgToServer', function (data) {
+    socket.emit('msgToClient', {nickname: data.nickname, msg: data.msg})
+    socket.broadcast.emit('msgToClient', {nickname: data.nickname, msg: data.msg})
   })
 })
-
