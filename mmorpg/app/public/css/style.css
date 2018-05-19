@@ -1,0 +1,81 @@
+.body-index{
+	background: #010101;
+}
+
+.body-game{
+	background-image: url('../images/map.gif');
+	background-position: center;
+}
+
+.form-enter {
+	padding-top: 10px;
+}
+
+.form-register {
+	color: #fff;
+}
+
+.form-register img{
+	margin: 0 auto;
+}
+
+.exit {
+	padding-top: 10px;
+}
+
+.bar-upper {
+	background-color: #fff;
+	padding:15px;
+  opacity: 0.9;
+  text-align:center;
+  filter: alpha(opacity=90); /* For IE8 and earlier */
+}
+
+.bar-upper span{
+	display: block;
+	width: 100%;
+	font-weight: bold;
+}
+
+.bar-bottom {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  text-align:center;
+  height: auto;
+  padding:15px;
+  background-color: #fff;
+  opacity: 0.9;
+  filter: alpha(opacity=90); /* For IE8 and earlier */
+}
+
+.bar-bottom span{
+	display: block;
+	width: 100%;
+	font-weight: bold;
+}
+
+.actions{
+  background-color: #fff;
+  opacity: 0.9;
+  filter: alpha(opacity=90); /* For IE8 and earlier */
+  padding:15px;
+}
+
+.actions span{
+	color: #333333;
+}
+
+#parchment{
+	max-height: 180px;
+	overflow: auto;
+}
+
+.house span{
+	margin-top:-20px;
+	margin-left:10px;
+	display: block;
+	font-weight: bold;
+	color:#fff;
+	font-size: 15px;
+}
