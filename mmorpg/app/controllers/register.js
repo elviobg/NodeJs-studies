@@ -11,10 +11,11 @@ module.exports.registerUser = function (app, req, res) {
 
   const errors = req.validationErrors()
   if (errors) {
-    // console.log(errors)
     res.render('register', {validation: errors, data: dataForm})
     return
   }
-  
-  res.render('register', {validation: {}, data: {}})
+
+  const connection = app.config.databaseConnection
+  const usersDAO = new app.app.models.UsersDAO(connection)
+  usersDAO.createNewUser(dataForm, res.send('usuario criado'))
 }
