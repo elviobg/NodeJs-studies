@@ -18,24 +18,40 @@
 			</div>
 		</nav>
     <div class="container">
-			<form class="form-register">
+      <% if(validation && validation.length > 0) { %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-danger">
+              <strong>Atenção!</strong>
+              <ul>
+                <% for(var i = 0; i < validation.length; i++) { %>
+                  <li>
+                    <%= validation[i].msg %>
+                  </li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% } %>
+			<form class="form-register" action="register" method="POST">
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="nome" class="col-sm-2 col-form-label">Nome</label>
-							<input type="nome" class="form-control" id="name" placeholder="Nome">
+							<input type="nome" class="form-control" value="<%=data.name %>" name="name" id="name" placeholder="Nome">
 						</div>
 					</div>
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="usuario" class="col-sm-2 col-form-label">Usuário</label>
-							<input type="usuario" class="form-control" id="user" placeholder="Usuário">
+							<input type="usuario" class="form-control" value="<%=data.user %>" name="user" id="user" placeholder="Usuário">
 						</div>
 					</div>
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="senha" class="col-sm-2 col-form-label">Senha</label>
-							<input type="password" class="form-control" id="key" placeholder="Password">
+							<input type="password" class="form-control" value="<%=data.key %>" name="key" id="key" placeholder="Password">
 						</div>
 					</div>
 				</div>
