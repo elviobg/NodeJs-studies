@@ -17,5 +17,8 @@ module.exports.registerUser = function (app, req, res) {
 
   const connection = app.config.databaseConnection
   const usersDAO = new app.app.models.UsersDAO(connection)
-  usersDAO.createNewUser(dataForm, res.send('usuario criado'))
+  usersDAO.createNewUser(dataForm, function (err, result) {
+    if (err) { throw err }
+    res.send('usuario criado')
+  })
 }

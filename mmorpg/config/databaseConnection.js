@@ -20,11 +20,14 @@ const databaseConnection = function () {
   }
 }
 
-function query (db, dados) {
-  var collection = db.collection(dados.collection)
-  switch (dados.operacao) {
-    case 'insert':
-      collection.insertOne(dados.usuario, dados.callback)
+function query (db, data) {
+  var collection = db.collection(data.collection)
+  switch (data.operation) {
+    case 'insertUser':
+      collection.insertOne(data.user, data.callback)
+      break
+    case 'findUser':
+      collection.find(data.user).toArray(data.callback)
       break
     default:
       break

@@ -1,18 +1,26 @@
 function UsersDAO (connection) {
   this._dbConnection = connection()
-  console.log(this._dbConnection)
 }
 
-UsersDAO.prototype.createNewUser = function (user, res) {
+UsersDAO.prototype.createNewUser = function (user, response) {
   var data = {
-    operacao: 'insert',
-    usuario: user,
+    operation: 'insertUser',
+    user: user,
     collection: 'users',
-    callback: function (err, result) {
-      res
-    }
+    callback: response
   }
   this._dbConnection(data)
+}
+
+UsersDAO.prototype.authenticateUser = function (user, response) {
+  var data = {
+    operation: 'findUser',
+    user: user,
+    collection: 'users',
+    callback: response
+  }
+  this._dbConnection(data)
+  return true
 }
 
 module.exports = function () {
