@@ -38,6 +38,9 @@ function query (db, data) {
     case 'insertNewAction':
       collection.insertOne(data.action, data.callback)
       break
+    case 'findUserActions':      
+      collection.find({user: data.user, endsAt: {$gt:data.currentTime}}).toArray(data.callback)
+      break
     default:
       break
   }
