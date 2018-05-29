@@ -5,7 +5,29 @@
 		<title>MMORPG - Game of Thrones</title>
   	<script src="js/jquery-2.2.1.js"></script>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+      $(document).ready( function() {
+        $('#btn_vassal').click( function(){
+          $.ajax({
+            url: '/vassal',
+            method: 'get',
+            success: function(data){
+              $('#actions').html(data)
+            }
+          })
+        })
+        $('#btn_parchment').click( function(){          
+          $.ajax({
+            url: '/parchment',
+            method: 'get',
+            success: function(data){
+              $('#actions').html(data)
+            }
+          })
+        })
+      })
+    </script>
 	</head>
 	<body class="body-game">
 		<nav class="navbar navbar-default navbar-static-top">
@@ -46,7 +68,7 @@
       <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-9">
-          <div class="actions"></div>					
+          <div class="actions" id="actions"></div>					
         </div>
       </div>
     </div>
@@ -54,12 +76,11 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-1">
-            <img src="images/others/vassal.jpg" title="Aldeões" alt="Aldeões"/>
+            <img src="images/others/vassal.jpg" title="Aldeões" alt="Aldeões" id="btn_vassal"/>
             <span><%=game.vassal%></span>
           </div>
           <div class="col-sm-1">
-            <img src="images/others/parchment.jpg" title="Pergaminhos" alt="Pergaminhos"/>
-            <span><%=game.parchment%></span>
+            <img src="images/others/parchment.jpg" title="Pergaminhos" alt="Pergaminhos" id="btn_parchment"/>            
           </div>
           <div class="col-sm-8"></div>
           <div class="col-sm-2">

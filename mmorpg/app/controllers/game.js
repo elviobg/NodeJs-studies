@@ -18,3 +18,15 @@ module.exports.exit = function (app, req, res) {
     res.render('index', {validation: {}, data: {}})
   })
 }
+
+module.exports.vassal = function (app, req, res) {
+  req.session.destroy(function (error) {
+    res.render('workers', {validation: {}, data: {}})
+  })
+}
+
+module.exports.parchment = function (app, req, res) {
+  req.session.destroy(function (error) {
+    res.render('parchment', {validation: {}, data: {}})
+  })
+}

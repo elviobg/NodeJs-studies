@@ -19,8 +19,7 @@ GameDAO.prototype.createNewStats = function (user, response) {
     wisdow: Math.floor(Math.random() * 1000),
     trade: Math.floor(Math.random() * 1000),
     magic: Math.floor(Math.random() * 1000),
-    vassal: 10,
-    parchment: 1,
+    vassal: 10,    
     coin: 15
   }
   var data = {
