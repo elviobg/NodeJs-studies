@@ -19,6 +19,14 @@ module.exports.registerUser = function (app, req, res) {
   const usersDAO = new app.app.models.UsersDAO(connection)
   usersDAO.createNewUser(dataForm, function (err, result) {
     if (err) { throw err }
-    res.send('usuario criado')
+    req.session.authenticated = true
+    req.session.user = dataForm.user
+    req.session.house = dataForm.house
+    const gameDAO = new app.app.models.GameDAO(connection)
+    gameDAO.createNewStats(dataForm.user, function (err, result) {
+      if (err) { throw err }
+      var game = result['ops'][0]
+      res.render('game', {house: req.session.house, game: game})
+    })
   })
 }

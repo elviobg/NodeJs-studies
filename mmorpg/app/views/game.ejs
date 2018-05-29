@@ -20,25 +20,25 @@
     <div class="container">
       <div class="row">
           <div class="col-sm-3 house">
-          <img src="images/houses/martell.jpg" />
+          <img src="images/houses/<%=house%>.jpg" />
         </div>
         <div class="col-sm-9">
           <div class="row bar-upper">
             <div class="col-sm-2"> 
               <img src="images/skills/fear.jpg" title="Temor" alt="Temor" />
-              <span>754</span>
+              <span><%=game.fear%></span>
             </div>
             <div class="col-sm-2"> 
               <img src="images/skills/wisdow.jpg" title="Sabedoria" alt="Sabedoria"/>
-              <span>754</span>
+              <span><%=game.wisdow%></span>
             </div>
             <div class="col-sm-2"> 
               <img src="images/skills/trade.jpg" title="Comércio" alt="Comércio"/>
-              <span>754</span>
+              <span><%=game.trade%></span>
             </div>
             <div class="col-sm-2"> 
               <img src="images/skills/magic.jpg" title="Magia" alt="Magia"/>
-              <span>754</span>
+              <span><%=game.magic%></span>
             </div>
           </div>
         </div>
@@ -55,14 +55,16 @@
         <div class="row">
           <div class="col-sm-1">
             <img src="images/others/vassal.jpg" title="Aldeões" alt="Aldeões"/>
+            <span><%=game.vassal%></span>
           </div>
           <div class="col-sm-1">
             <img src="images/others/parchment.jpg" title="Pergaminhos" alt="Pergaminhos"/>
+            <span><%=game.parchment%></span>
           </div>
           <div class="col-sm-8"></div>
           <div class="col-sm-2">
             <img src="images/others/coin.jpg" title="Moeda" alt="Moeda"/>
-            <span>25</span>
+            <span><%=game.coin%></span>
           </div>
         </div>
       </div>

@@ -20,7 +20,6 @@ UsersDAO.prototype.authenticateUser = function (user, response) {
     callback: response
   }
   this._dbConnection(data)
-  return true
 }
 
 module.exports = function () {

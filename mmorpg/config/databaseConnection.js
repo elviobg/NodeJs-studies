@@ -29,6 +29,12 @@ function query (db, data) {
     case 'findUser':
       collection.find(data.user).toArray(data.callback)
       break
+    case 'insertNewStats':
+      collection.insertOne(data.game, data.callback)
+      break
+    case 'findUserStats':
+      collection.find(data.user).toArray(data.callback)
+      break
     default:
       break
   }

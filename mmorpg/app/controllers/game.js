@@ -2,7 +2,15 @@ module.exports.game = function (app, req, res) {
   if (!req.session.authenticated) {
     res.render('index', {validation: [{ param: 'auth', msg: 'Usuário não autenticado', value: '' }], data: {}})
   }
-  res.render('game')
+  const connection = app.config.databaseConnection
+  const gameDAO = new app.app.models.GameDAO(connection)
+  
+  gameDAO.getUserStats(req.session.user, function (err, result) {
+    if (err) { throw err } 
+    var game = result[0]
+    delete game['_id']
+    res.render('game', {house: req.session.house, game: game})
+  })
 }
 
 module.exports.exit = function (app, req, res) {
