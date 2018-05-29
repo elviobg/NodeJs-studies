@@ -11,4 +11,7 @@ module.exports = function (app) {
   app.get('/parchment', function (req, res) {
     app.app.controllers.game.parchment(app, req, res)
   })
+  app.post('/order', function (req, res) {
+    app.app.controllers.game.order(app, req, res)
+  })
 }

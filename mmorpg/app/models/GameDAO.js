@@ -31,6 +31,20 @@ GameDAO.prototype.createNewStats = function (user, response) {
   this._dbConnection(data)
 }
 
+GameDAO.prototype.vassalAction = function (action, user, response) {
+  const date = new Date()
+  var actionTime = action.action * 60 * 6000
+  action.user = user
+  action.endsAt = actionTime + date.getTime()
+  var data = {
+    operation: 'insertNewAction',
+    action: action,
+    collection: 'action',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
 module.exports = function () {
   return GameDAO
 }

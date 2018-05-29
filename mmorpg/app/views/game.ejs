@@ -40,7 +40,22 @@
       </form>
 		</nav>
     <div class="container">
-      <div class="row">
+        <% if(message) { %>
+          <div class="row">
+            <div class="col-md-12">
+              <% if(message.param == 'invalidcommand') { %>
+              <div class="alert alert-danger">
+                <strong><%=message.msg%></strong>
+              </div>
+              <%} else if(message.param == 'sucess') { %>
+              <div class="alert alert-info">
+                <strong><%=message.msg%></strong>
+              </div>
+              <%}%>
+            </div>
+          </div>
+        <% } %>
+        <div class="row">
           <div class="col-sm-3 house">
           <img src="images/houses/<%=house%>.jpg" />
         </div>

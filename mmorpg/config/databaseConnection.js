@@ -35,6 +35,9 @@ function query (db, data) {
     case 'findUserStats':
       collection.find(data.user).toArray(data.callback)
       break
+    case 'insertNewAction':
+      collection.insertOne(data.action, data.callback)
+      break
     default:
       break
   }
