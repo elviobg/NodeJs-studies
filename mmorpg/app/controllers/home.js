@@ -3,7 +3,7 @@ module.exports.index = function (app, req, res) {
 }
 
 module.exports.auth = function (app, req, res) {
-  const dataForm = req.body  
+  const dataForm = req.body
   req.assert('user', 'Usuário é obrigatorio').notEmpty()
   req.assert('key', 'Senha é obrigatoria').notEmpty()
 

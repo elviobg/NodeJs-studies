@@ -19,7 +19,7 @@ GameDAO.prototype.createNewStats = function (user, response) {
     wisdow: Math.floor(Math.random() * 1000),
     trade: Math.floor(Math.random() * 1000),
     magic: Math.floor(Math.random() * 1000),
-    vassal: 10,    
+    vassal: 10,
     coin: 15
   }
   var data = {
@@ -53,6 +53,35 @@ GameDAO.prototype.getActions = function (user, response) {
     user: user,
     currentTime: currentTime,
     collection: 'action',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
+GameDAO.prototype.updateCoins = function (action, user, response) {
+  action.user = user
+  var coins = 0
+  switch (parseInt(action.action)) {
+    case 1:
+      coins = 2 * action.quantity
+      break
+    case 2:
+      coins = 3 * action.quantity
+      break
+    case 3:
+    case 4:
+      coins = 1 * action.quantity
+      break
+    default:
+      break
+  }
+
+  coins = coins * -1
+  var data = {
+    operation: 'updateCoins',
+    coins: coins,
+    user: user,
+    collection: 'game',
     callback: response
   }
   this._dbConnection(data)

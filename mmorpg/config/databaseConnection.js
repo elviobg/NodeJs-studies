@@ -33,13 +33,16 @@ function query (db, data) {
       collection.insertOne(data.game, data.callback)
       break
     case 'findUserStats':
-      collection.find(data.user).toArray(data.callback)
+      collection.find({user: data.user}).toArray(data.callback)
       break
     case 'insertNewAction':
       collection.insertOne(data.action, data.callback)
       break
-    case 'findUserActions':      
-      collection.find({user: data.user, endsAt: {$gt:data.currentTime}}).toArray(data.callback)
+    case 'findUserActions':
+      collection.find({user: data.user, endsAt: {$gt: data.currentTime}}).toArray(data.callback)
+      break
+    case 'updateCoins':
+      collection.updateOne({user: data.user}, {$inc: {coin: data.coins}}, data.callback)
       break
     default:
       break
