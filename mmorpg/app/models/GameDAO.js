@@ -61,7 +61,7 @@ GameDAO.prototype.getActions = function (user, response) {
 GameDAO.prototype.removeAction = function (id, response) {
   var data = {
     operation: 'removeUserAction',
-    _id: id,    
+    _id: id,
     collection: 'action',
     callback: response
   }

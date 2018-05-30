@@ -16,10 +16,10 @@ module.exports.game = function (app, req, res) {
       message = { param: 'sucess', msg: 'Ação realizada com sucesso!', value: '' }
     }
     if (req.query.actionresult === 'revoke') {
-      message = { param: 'revoke', msg: 'Uma tarefa foi revogada', value: '' }
+      message = { param: 'sucess', msg: 'Uma tarefa foi revogada', value: '' }
     }
     if (req.query.actionresult === 'actionfinished') {
-      message = { param: 'actionfinished', msg: 'Uma tarefa foi concluida', value: '' }
+      message = { param: 'sucess', msg: 'Uma tarefa foi concluida', value: '' }
     }
   }
 
@@ -38,7 +38,7 @@ module.exports.exit = function (app, req, res) {
 }
 
 module.exports.vassal = function (app, req, res) {
-  if (!req.session.authenticated) {    
+  if (!req.session.authenticated) {
     res.send('Usuário não autenticado')
     return
   }
@@ -46,7 +46,7 @@ module.exports.vassal = function (app, req, res) {
 }
 
 module.exports.parchment = function (app, req, res) {
-  if (!req.session.authenticated) {    
+  if (!req.session.authenticated) {
     res.send('Usuário não autenticado')
     return
   }
@@ -87,12 +87,11 @@ module.exports.order = function (app, req, res) {
 }
 
 module.exports.revokeOrder = function (app, req, res) {
-  const query = req.query;  
   const connection = app.config.databaseConnection
   const gameDAO = new app.app.models.GameDAO(connection)
 
   gameDAO.removeAction(req.query.id, function (err, result) {
     if (err) { throw err }
     res.redirect('game?actionresult=revoke')
-  })  
+  })
 }

@@ -1,8 +1,12 @@
+const crypto = require('crypto')
+
 function UsersDAO (connection) {
   this._dbConnection = connection()
 }
 
 UsersDAO.prototype.createNewUser = function (user, response) {
+  const encryptedKey = crypto.createHash('md5').update(user.key).digest('hex')
+  user.key = encryptedKey
   var data = {
     operation: 'insertUser',
     user: user,
@@ -13,6 +17,8 @@ UsersDAO.prototype.createNewUser = function (user, response) {
 }
 
 UsersDAO.prototype.authenticateUser = function (user, response) {
+  const encryptedKey = crypto.createHash('md5').update(user.key).digest('hex')
+  user.key = encryptedKey
   var data = {
     operation: 'findUser',
     user: user,

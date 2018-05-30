@@ -14,7 +14,6 @@ const databaseConnection = function () {
   return function (data) {
     mongodb.connect(dbConsts.url, function (err, client) {
       assert.equal(null, err)
-      console.log('Connected successfully to server')
       const db = client.db(dbConsts.database)
       query(db, data)
       client.close()
@@ -29,7 +28,7 @@ function query (db, data) {
       collection.insertOne(data.user, data.callback)
       break
     case 'findUser':
-      collection.find(data.user).toArray(data.callback)
+      collection.find({user: data.user.user}).toArray(data.callback)
       break
     case 'insertNewStats':
       collection.insertOne(data.game, data.callback)
