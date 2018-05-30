@@ -38,18 +38,4 @@ module.exports.registerUser = function (app, req, res) {
       })
     }
   })
-  /*
-  usersDAO.createNewUser(dataForm, function (err, result) {
-    if (err) { throw err }
-    req.session.authenticated = true
-    req.session.user = dataForm.user
-    req.session.house = dataForm.house
-    const gameDAO = new app.app.models.GameDAO(connection)
-    gameDAO.createNewStats(dataForm.user, function (err, result) {
-      if (err) { throw err }
-      var game = result['ops'][0]
-      res.render('game', {house: req.session.house, game: game, message:{ param: 'sucess', msg: 'Seja bem-vindo ao Jogo dos Tronos!', value: '' }})
-    })
-  })
-  */
 }
