@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>MMORPG - Game of Thrones</title>
+  	<script src="js/jquery-2.2.1.js"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+      $(document).ready( function() {
+        $('#btn_vassal').click( function(){
+          $('#alerts').hide()
+          $.ajax({
+            url: '/vassal',
+            method: 'get',
+            success: function(data){
+              $('#actions').html(data)
+            }
+          })
+        })
+        $('#btn_parchment').click( function(){ 
+          $('#alerts').hide()         
+          $.ajax({
+            url: '/parchment',
+            method: 'get',
+            success: function(data){
+              $('#actions').html(data)
+              clearTimeout(timer)
+              cronometer()
+            }
+          })
+        })
+      })
+      var timer = null
+      function cronometer() {
+          $('.cronometer').each( function(){
+            var seconds = $(this).html()
+            seconds = parseInt(seconds) - 1 
+            if ( seconds < 0 ) {
+              window.location.href = '/game?actionresult=actionfinished'
+            }else {
+              $(this).html(seconds)
+            }
+          })
+          timer = setTimeout('cronometer()', 1000)
+        }
+    </script>
+	</head>
+	<body class="body-game">
+		<nav class="navbar navbar-default navbar-static-top">
+      <form action="/exit" method="get">
+        <div class="container">
+          <div class="form-group exit">
+            <button type="submit" class="btn btn-info pull-right">Sair</button>
+          </div>
+        </div>
+      </form>
+		</nav>
+    <div class="container">
+        <% if(message) { %>
+          <div class="row" id='alerts'>
+            <div class="col-md-12">
+              <% if(message.param == 'invalidcommand') { %>
+              <div class="alert alert-danger">
+                <strong><%=message.msg%></strong>
+              </div>
+              <%} else if(message.param == 'sucess') { %>
+              <div class="alert alert-info">
+                <strong><%=message.msg%></strong>
+              </div>
+              <%}%>
+            </div>
+          </div>
+        <% } %>
+        <div class="row">
+          <div class="col-sm-3 house">
+          <img src="images/houses/<%=house%>.jpg" />
+        </div>
+        <div class="col-sm-9">
+          <div class="row bar-upper">
+            <div class="col-sm-2"> 
+              <img src="images/skills/fear.jpg" title="Temor" alt="Temor" />
+              <span><%=game.fear%></span>
+            </div>
+            <div class="col-sm-2"> 
+              <img src="images/skills/wisdow.jpg" title="Sabedoria" alt="Sabedoria"/>
+              <span><%=game.wisdow%></span>
+            </div>
+            <div class="col-sm-2"> 
+              <img src="images/skills/trade.jpg" title="Comércio" alt="Comércio"/>
+              <span><%=game.trade%></span>
+            </div>
+            <div class="col-sm-2"> 
+              <img src="images/skills/magic.jpg" title="Magia" alt="Magia"/>
+              <span><%=game.magic%></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9">
+          <div class="actions" id="actions"></div>					
+        </div>
+      </div>
+    </div>
+    <div class="bar-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1">
+            <img src="images/others/vassal.jpg" title="Aldeões" alt="Aldeões" id="btn_vassal"/>
+            <span><%=game.vassal%></span>
+          </div>
+          <div class="col-sm-1">
+            <img src="images/others/parchment.jpg" title="Pergaminhos" alt="Pergaminhos" id="btn_parchment"/>            
+          </div>
+          <div class="col-sm-8"></div>
+          <div class="col-sm-2">
+            <img src="images/others/coin.jpg" title="Moeda" alt="Moeda"/>
+            <span><%=game.coin%></span>
+          </div>
+        </div>
+      </div>
+    </div>
+	</body>
+</html>

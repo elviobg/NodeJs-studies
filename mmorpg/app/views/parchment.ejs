@@ -1,0 +1,31 @@
+<div id="pergaminhos">					
+  <h3>Pergaminhos</h3>
+  <ul>
+    <% if(actions && actions.length > 0) {
+        const currentTime = new Date().getTime() 
+        for(var i = 0; i < actions.length; i++) { 
+          var txt_action = ''
+          switch(actions[i].action) {
+            case '1': 
+              txt_action ='aldeão(ões) coletando recursos'
+              break
+            case '2': 
+              txt_action ='enforcamento(s) programado'
+              break
+            case '3': 
+              txt_action ='aldeão(ões) em treinamento de história'
+              break
+            case '4': 
+              txt_action ='aldeão(ões) em treinamento de magia'
+              break
+          }
+          %>
+          <li> <%=actions[i].quantity%> <%=txt_action%> - 
+            <small>restam <span class="cronometer"><%= Math.round((actions[i].endsAt - currentTime)/1000) %></span> segundos - 
+              <a href="/revokeorder?id=<%=actions[i]._id%>">revogar ordem</a>
+            </small>
+          </li>
+    <% } 
+    } %>
+  </ul>
+</div>

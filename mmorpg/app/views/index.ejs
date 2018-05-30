@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>MMORPG - Game of Thrones</title>
+		<script src="js/jquery-2.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body class="body-index">
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container">
+        <% if(validation && validation.length > 0) { %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-danger">
+                <strong>Atenção!</strong>
+                <ul>
+                  <% for(var i = 0; i < validation.length; i++) { %>
+                    <li>
+                      <%= validation[i].msg %>
+                    </li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% } %>
+				<form class="form-inline form-entrar" action="/auth" method="post">
+					<div class="form-group">				
+						<input type="text" value="<%=data.user %>" name="user" id="user" placeholder="Usuário" class="form-control" autocomplete="off" />
+						<input type="password" name="key" id="key" placeholder="Senha" class="form-control" />
+						<button type="submit" class="btn btn-success">Entrar</button>
+						<button type="button" class="btn btn-info">Cadastro</button>
+					</div>
+				</form>
+			</div>
+		</nav>
+	    <div class="container">
+	    	<div class="row">
+	    		<div class="col-md-2"></div>
+	    		<div class="col-md-8">
+  					<img src="images/logo.jpg" />
+	  			</div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+	    </div>
+	</body>
+</html>
