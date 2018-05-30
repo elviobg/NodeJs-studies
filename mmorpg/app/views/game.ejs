@@ -7,7 +7,6 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <script>
-      var timer = null
       $(document).ready( function() {
         $('#btn_vassal').click( function(){
           $('#alerts').hide()
@@ -32,17 +31,18 @@
           })
         })
       })
+      var timer = null
       function cronometer() {
           $('.cronometer').each( function(){
             var seconds = $(this).html()
-            seconds = parseInt(seconds)-1 
+            seconds = parseInt(seconds) - 1 
             if ( seconds < 0 ) {
               window.location.href = '/game?actionresult=actionfinished'
             }else {
               $(this).html(seconds)
-              timer = setTimeout('cronometer()', 1000)
             }
           })
+          timer = setTimeout('cronometer()', 1000)
         }
     </script>
 	</head>
@@ -64,7 +64,7 @@
               <div class="alert alert-danger">
                 <strong><%=message.msg%></strong>
               </div>
-              <%} else if(message.param == 'sucess' || message.param == 'actionfinished') { %>
+              <%} else if(message.param == 'sucess' || message.param == 'revoke' || message.param == 'actionfinished') { %>
               <div class="alert alert-info">
                 <strong><%=message.msg%></strong>
               </div>

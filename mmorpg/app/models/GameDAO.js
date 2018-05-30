@@ -58,6 +58,16 @@ GameDAO.prototype.getActions = function (user, response) {
   this._dbConnection(data)
 }
 
+GameDAO.prototype.removeAction = function (id, response) {
+  var data = {
+    operation: 'removeUserAction',
+    _id: id,    
+    collection: 'action',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
 GameDAO.prototype.updateCoins = function (action, user, response) {
   action.user = user
   var coins = 0

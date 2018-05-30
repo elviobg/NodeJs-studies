@@ -22,7 +22,7 @@
           %>
           <li> <%=actions[i].quantity%> <%=txt_action%> - 
             <small>restam <span class="cronometer"><%= Math.round((actions[i].endsAt - currentTime)/1000) %></span> segundos - 
-              <a href="#">revogar ordem</a>
+              <a href="/revokeorder?id=<%=actions[i]._id%>">revogar ordem</a>
             </small>
           </li>
     <% } 

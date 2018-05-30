@@ -14,4 +14,7 @@ module.exports = function (app) {
   app.post('/order', function (req, res) {
     app.app.controllers.game.order(app, req, res)
   })
+  app.get('/revokeorder', function (req, res) {
+    app.app.controllers.game.revokeOrder(app, req, res)
+  })
 }

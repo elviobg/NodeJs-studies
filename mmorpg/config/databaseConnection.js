@@ -1,3 +1,5 @@
+const objectID = require('mongodb').ObjectID
+
 const dbConsts = {
   database: 'gotmmorpg',
   host: 'localhost',
@@ -40,6 +42,9 @@ function query (db, data) {
       break
     case 'findUserActions':
       collection.find({user: data.user, endsAt: {$gt: data.currentTime}}).toArray(data.callback)
+      break
+    case 'removeUserAction':
+      collection.deleteOne({_id: objectID(data._id)}, data.callback)
       break
     case 'updateCoins':
       collection.updateOne({user: data.user}, {$inc: {coin: data.coins}}, data.callback)
