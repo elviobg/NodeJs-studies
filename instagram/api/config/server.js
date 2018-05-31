@@ -2,17 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
 const consign = require('consign')
-const app = express()
+const api = express()
 const PORT = 3000
 
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+api.use(bodyParser.urlencoded({extended: true}))
+api.use(bodyParser.json())
 
 consign()
   .include('./config/databaseConnection.js')
   .then('./models')
   .then('./controllers')
   .then('./routes')
-  .into(app)
+  .into(api)
 
-module.exports = app
+module.exports = api

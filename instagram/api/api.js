@@ -1,6 +1,6 @@
-const app = require('./config/server')
+const api = require('./config/server')
 const PORT = 3000
 
-app.listen(PORT, function () {
+api.listen(PORT, function () {
   console.log('Server running at port:', PORT)
 })
