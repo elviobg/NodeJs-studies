@@ -1,3 +1,5 @@
+const objectID = require('mongodb').ObjectID
+
 const dbConsts = {
   database: 'instagram_clone',
   host: 'localhost',
@@ -27,6 +29,9 @@ function query (db, data) {
       break
     case 'getAllPosts':
       collection.find().toArray(data.callback)
+      break
+    case 'getPostByID':
+      collection.find({_id: objectID(data.id)}).toArray(data.callback)
       break
   }
 }

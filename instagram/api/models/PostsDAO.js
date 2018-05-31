@@ -21,6 +21,16 @@ PostsDAO.prototype.getAllPosts = function (response) {
   this._dbConnection(data)
 }
 
+PostsDAO.prototype.getPostByID = function (id, response) {
+  var data = {
+    operation: 'getPostByID',
+    id: id,
+    collection: 'posts',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
 module.exports = function () {
   return PostsDAO
 }
