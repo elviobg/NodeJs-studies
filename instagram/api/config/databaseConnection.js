@@ -33,6 +33,12 @@ function query (db, data) {
     case 'getPostByID':
       collection.find({_id: objectID(data.id)}).toArray(data.callback)
       break
+    case 'updatePost':      
+      collection.update({_id: objectID(data.id)}, {$set: {title:data.post.title}}, {}, data.callback)
+      break
+    case 'removePost':      
+      collection.remove({_id: objectID(data.id)}, data.callback)
+      break
   }
 }
 

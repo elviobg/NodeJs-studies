@@ -31,6 +31,27 @@ PostsDAO.prototype.getPostByID = function (id, response) {
   this._dbConnection(data)
 }
 
+PostsDAO.prototype.updatePost = function (id, post, response) {
+  var data = {
+    operation: 'updatePost',
+    post: post,
+    id: id,
+    collection: 'posts',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
+PostsDAO.prototype.removePost = function (id, response) {
+  var data = {
+    operation: 'removePost',    
+    id: id,
+    collection: 'posts',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
 module.exports = function () {
   return PostsDAO
 }
