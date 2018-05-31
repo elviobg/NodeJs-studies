@@ -25,6 +25,9 @@ function query (db, data) {
     case 'insertNewPost':
       collection.insertOne(data.post, data.callback)
       break
+    case 'getAllPosts':
+      collection.find().toArray(data.callback)
+      break
   }
 }
 

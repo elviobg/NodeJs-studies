@@ -4,7 +4,7 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard --fix"
   },
   "author": "Elvio",
   "license": "ISC",

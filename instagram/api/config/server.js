@@ -1,9 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const mongodb = require('mongodb')
 const consign = require('consign')
 const api = express()
-const PORT = 3000
 
 api.use(bodyParser.urlencoded({extended: true}))
 api.use(bodyParser.json())

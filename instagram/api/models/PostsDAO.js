@@ -12,6 +12,15 @@ PostsDAO.prototype.insertNewPost = function (post, response) {
   this._dbConnection(data)
 }
 
+PostsDAO.prototype.getAllPosts = function (response) {
+  var data = {
+    operation: 'getAllPosts',
+    collection: 'posts',
+    callback: response
+  }
+  this._dbConnection(data)
+}
+
 module.exports = function () {
   return PostsDAO
 }
