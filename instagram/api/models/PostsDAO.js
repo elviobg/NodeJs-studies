@@ -1,3 +1,4 @@
+const objectID = require('mongodb').ObjectID
 function PostsDAO (connection, imageManager) {
   this._dbConnection = connection()  
 }
@@ -31,9 +32,24 @@ PostsDAO.prototype.getPostByID = function (id, response) {
   this._dbConnection(data)
 }
 
-PostsDAO.prototype.updatePost = function (id, post, response) {
+PostsDAO.prototype.updatePostComments = function (id, post, response) {  
+  post.comment = {id: new objectID(), 
+                  comment: post.comment,
+                  time: new Date().getTime()}
   var data = {
-    operation: 'updatePost',
+    operation: 'updatePostComments',
+    post: post,
+    id: id,
+    collection: 'posts',
+    callback: response
+  }
+  console.log(data)
+  this._dbConnection(data)
+}
+
+PostsDAO.prototype.updatePostTitle = function (id, post, response) {
+  var data = {
+    operation: 'updatePostTitle',
     post: post,
     id: id,
     collection: 'posts',

@@ -1,7 +1,4 @@
 module.exports.insert = function (api, req, res) {
-  const fs = require('fs')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-
   const imageManager = api.config.imageManager  
   const imagesDAO = new api.models.ImageDAO(imageManager)  
   const date = new Date()
@@ -60,14 +57,22 @@ module.exports.updatePost = function (api, req, res) {
   var data = req.body
   const connection = api.config.databaseConnection
   const postsDAO = new api.models.PostsDAO(connection)
-
-  postsDAO.updatePost(req.params.id, data, function (err, result) {
+  
+  const callback = function (err, result) {
     if (err) {
       res.json(err)
     } else {
       res.json(result)
     }
-  })
+  }
+  
+  if (data.title !== undefined) {
+    console.log('title', data.title)
+    postsDAO.updatePostTitle(req.params.id, data, callback)
+  }else if (data.comment !== undefined) {
+    console.log('comments', data.comment)
+    postsDAO.updatePostComments(req.params.id, data, callback)
+  }
 }
 
 module.exports.removePost = function (api, req, res) {
