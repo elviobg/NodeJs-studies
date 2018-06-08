@@ -34,12 +34,15 @@ function query (db, data) {
       collection.find({_id: objectID(data.id)}).toArray(data.callback)
       break
     case 'updatePostTitle':
-      collection.update({_id: objectID(data.id)}, {$set: {title:data.post.title}}, {}, data.callback)
+      collection.update({_id: objectID(data.id)}, {$set: {title: data.post.title}}, {}, data.callback)
       break
     case 'updatePostComments':
-      collection.update({_id: objectID(data.id)}, {$push: {comments:data.post.comment}}, {}, data.callback)
+      collection.update({_id: objectID(data.id)}, {$push: {comments: data.post.comment}}, {}, data.callback)
       break
-    case 'removePost':      
+    case 'removePostComments':
+      collection.update({_id: objectID(data.id)}, {$pull: {comments: {id: objectID(data.commentId)}}}, {}, data.callback)
+      break
+    case 'removePost':
       collection.remove({_id: objectID(data.id)}, data.callback)
       break
   }

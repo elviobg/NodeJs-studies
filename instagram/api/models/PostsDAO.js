@@ -1,6 +1,6 @@
-const objectID = require('mongodb').ObjectID
+const ObjectID = require('mongodb').ObjectID
 function PostsDAO (connection, imageManager) {
-  this._dbConnection = connection()  
+  this._dbConnection = connection()
 }
 
 PostsDAO.prototype.insertNewPost = function (post, response) {
@@ -32,14 +32,26 @@ PostsDAO.prototype.getPostByID = function (id, response) {
   this._dbConnection(data)
 }
 
-PostsDAO.prototype.updatePostComments = function (id, post, response) {  
-  post.comment = {id: new objectID(), 
-                  comment: post.comment,
-                  time: new Date().getTime()}
+PostsDAO.prototype.updatePostComments = function (id, post, response) {
+  post.comment = {id: new ObjectID(),
+    comment: post.comment,
+    time: new Date().getTime()}
   var data = {
     operation: 'updatePostComments',
     post: post,
     id: id,
+    collection: 'posts',
+    callback: response
+  }
+  console.log(data)
+  this._dbConnection(data)
+}
+
+PostsDAO.prototype.removePostComments = function (id, comment, response) {
+  var data = {
+    operation: 'removePostComments',
+    id: id,
+    commentId: comment.commentId,
     collection: 'posts',
     callback: response
   }
@@ -60,7 +72,7 @@ PostsDAO.prototype.updatePostTitle = function (id, post, response) {
 
 PostsDAO.prototype.removePost = function (id, response) {
   var data = {
-    operation: 'removePost',    
+    operation: 'removePost',
     id: id,
     collection: 'posts',
     callback: response

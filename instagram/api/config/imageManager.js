@@ -5,7 +5,7 @@ const imageManager = function () {
 
   return function (data) {
     switch (data.operation) {
-      case 'saveImage':        
+      case 'saveImage':
         fs.rename(data.path.original, prefixedSubfolder + data.path.destination, data.callback)
         break
       default:

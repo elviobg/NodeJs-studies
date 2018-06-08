@@ -1,10 +1,10 @@
-function ImageDAO (imageManager) {  
-  this._imageManager = imageManager()  
+function ImageDAO (imageManager) {
+  this._imageManager = imageManager()
 }
 
-ImageDAO.prototype.saveImage = function (pathOriginal, pathDestination, response) {  
+ImageDAO.prototype.saveImage = function (pathOriginal, pathDestination, response) {
   var data = {
-    operation: 'saveImage',    
+    operation: 'saveImage',
     path: {
       original: pathOriginal,
       destination: pathDestination
