@@ -1,5 +1,5 @@
-function PostsDAO (connection) {
-  this._dbConnection = connection()
+function PostsDAO (connection, imageManager) {
+  this._dbConnection = connection()  
 }
 
 PostsDAO.prototype.insertNewPost = function (post, response) {
