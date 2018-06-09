@@ -7,7 +7,7 @@ module.exports.insert = function (api, req, res) {
 
   imagesDAO.saveImage(pathOriginal, pathDestination, function (err, result) {
     if (err) {
-      throw (err)
+      res.status(400).json(err)
     } else {
       const data = {
         title: req.body.title,
@@ -18,9 +18,9 @@ module.exports.insert = function (api, req, res) {
 
       postsDAO.insertNewPost(data, function (err, result) {
         if (err) {
-          res.json(err)
+          res.status(500).json(err)
         } else {
-          res.json({'status': 'deu certo'})
+          res.status(200).json(result)
         }
       })
     }
@@ -33,9 +33,9 @@ module.exports.getAllPosts = function (api, req, res) {
 
   postsDAO.getAllPosts(function (err, result) {
     if (err) {
-      res.json(err)
+      res.status(500).json(err)
     } else {
-      res.json(result)
+      res.status(200).json(result)
     }
   })
 }
@@ -46,9 +46,9 @@ module.exports.getPostByID = function (api, req, res) {
 
   postsDAO.getPostByID(req.params.id, function (err, result) {
     if (err) {
-      res.json(err)
+      res.status(500).json(err)
     } else {
-      res.json(result)
+      res.status(200).json(result)
     }
   })
 }
@@ -60,9 +60,9 @@ module.exports.updatePost = function (api, req, res) {
 
   const callback = function (err, result) {
     if (err) {
-      res.json(err)
+      res.status(500).json(err)
     } else {
-      res.json(result)
+      res.status(200).json(result)
     }
   }
 
@@ -82,9 +82,9 @@ module.exports.removePost = function (api, req, res) {
 
   const callback = function (err, result) {
     if (err) {
-      res.json(err)
+      res.status(500).json(err)
     } else {
-      res.json({'status': 'deu certo'})
+      res.status(200).json(result)
     }
   }
 
