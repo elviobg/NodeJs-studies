@@ -18,4 +18,10 @@ Repositório para armazenar códigos de mini projetos feitos em NodeJs com  o in
 ##### Projeto #3: MMOrpg baseado em GoT
 - Conexão com banco de dados NoSQL MongoDB
 - Autenticação de usuários com criptografia MD5
+- Sessão de usuários com Express Session
 - Tratamento de ações de usuários e cronômetro para término
+
+##### Projeto #4: Clone do Instagram
+- Criação de APIs com NodeJs
+- Princípios REST e RESTful APIs
+- Princípios de API utilizando CORS

@@ -7,6 +7,7 @@ Segue a padronização StandardJS.
 ###### Tópicos abordados no projeto
 - Conexão com banco de dados NoSQL MongoDB
 - Autenticação de usuários com criptografia MD5
+- Sessão de usuários com Express Session
 - Tratamento de ações de usuários e cronômetro para término
 - Padronização de código com StandardJs
 - Web Apps com Express
